@@ -13,7 +13,6 @@ public class Course {
         this.department = department;
     }
 
-    /* getters / setters */
     public String     getCodMaterie()   { return codMaterie; }
     public String     getDenumire()     { return denumire;   }
     public int        getCredite()      { return credite;    }

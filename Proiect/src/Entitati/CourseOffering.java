@@ -3,7 +3,6 @@ package Entitati;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Oferta unui curs într-un an/semestru anume */
 public class CourseOffering {
     private final int  idOferta;
     private final Course curs;
