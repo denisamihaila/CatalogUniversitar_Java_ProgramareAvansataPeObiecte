@@ -173,24 +173,24 @@ public class Main {
     private static void populateDemo() {
 
         // Departamente
-        Department info   = new Department(1, "Informatica", "FMI");
-        Department mate   = new Department(2, "Matematica",  "FMI");
-        Department fizica = new Department(3, "Fizica",      "Facultatea de Fizica");
+        Department info = new Department(1, "Informatica", "FMI");
+        Department mate = new Department(2, "Matematica", "FMI");
+        Department fizica = new Department(3, "Fizica", "Facultatea de Fizica");
 
         // Cursuri
-        Course cProg  = new Course("CS101", "Programare",             6, info);
-        Course cAlgo  = new Course("CS102", "Algoritmi",              5, info);
-        Course cAMat  = new Course("MA201", "Analiza Matematica",     5, mate);
-        Course cEDif  = new Course("MA202", "Ecuatii Diferentiale",   4, mate);
-        Course cFiz1  = new Course("PH101", "Fizica I",               6, fizica);
+        Course cProg = new Course("CS101", "Programare", 6, info);
+        Course cAlgo = new Course("CS102", "Algoritmi", 5, info);
+        Course cAMat = new Course("MA201", "Analiza Matematica", 5, mate);
+        Course cEDif = new Course("MA202", "Ecuatii Diferentiale", 4, mate);
+        Course cFiz1 = new Course("PH101", "Fizica I", 6, fizica);
 
         // Înregistrăm cursurile
         List.of(cProg, cAlgo, cAMat, cEDif, cFiz1).forEach(catalog::adaugaMaterie);
 
         // Profesori
-        Professor profIonescu  = new Professor(IdGenerator.generareId(), "Cristian Ionescu", "Lect. univ. dr.", info);
-        Professor profNazarov = new Professor(IdGenerator.generareId(), "Maria Nazarov", "Conf. univ. dr.", mate);
-        Professor profGheorghe = new Professor(IdGenerator.generareId(), "Matei Gheorghe", "Prof. univ. dr.", fizica);
+        Professor profIonescu = new Professor(IdGenerator.generareId(), "Cristian Ionescu", "Lect. univ. dr.", info); //id 1
+        Professor profNazarov = new Professor(IdGenerator.generareId(), "Maria Nazarov", "Conf. univ. dr.", mate); //id 2
+        Professor profGheorghe = new Professor(IdGenerator.generareId(), "Matei Gheorghe", "Prof. univ. dr.", fizica); //id 3
 
         List.of(profIonescu, profNazarov, profGheorghe).forEach(p -> {
             catalog.adaugaProfesor(p);
@@ -198,11 +198,11 @@ public class Main {
         });
 
         // Oferte de curs (semestru/an)
-        CourseOffering offProg  = new CourseOffering(IdGenerator.generareId(), cProg, 1, 2025);
-        CourseOffering offAlgo  = new CourseOffering(IdGenerator.generareId(), cAlgo, 2, 2025);
-        CourseOffering offAMat  = new CourseOffering(IdGenerator.generareId(), cAMat, 1, 2025);
-        CourseOffering offEDif  = new CourseOffering(IdGenerator.generareId(), cEDif, 2, 2025);
-        CourseOffering offFiz1  = new CourseOffering(IdGenerator.generareId(), cFiz1, 1, 2025);
+        CourseOffering offProg = new CourseOffering(IdGenerator.generareId(), cProg, 1, 2025); //id 4
+        CourseOffering offAlgo = new CourseOffering(IdGenerator.generareId(), cAlgo, 2, 2025); //id 5
+        CourseOffering offAMat = new CourseOffering(IdGenerator.generareId(), cAMat, 1, 2025); //id 6
+        CourseOffering offEDif = new CourseOffering(IdGenerator.generareId(), cEDif, 2, 2025); //id 7
+        CourseOffering offFiz1 = new CourseOffering(IdGenerator.generareId(), cFiz1, 1, 2025); //id 8
 
         List.of(offProg, offAlgo, offAMat, offEDif, offFiz1).forEach(o -> {
             catalog.adaugaOferta(o);
@@ -210,16 +210,16 @@ public class Main {
         });
 
         // Atribuim profesori la unele cursuri
-        catalog.atribuireProfesorLaCurs(profIonescu.getId(),    offProg.getIdOferta());
-        catalog.atribuireProfesorLaCurs(profIonescu.getId(),    offAlgo.getIdOferta());
-        catalog.atribuireProfesorLaCurs(profNazarov.getId(),offAMat.getIdOferta());
-        catalog.atribuireProfesorLaCurs(profNazarov.getId(),offEDif.getIdOferta());
-        catalog.atribuireProfesorLaCurs(profGheorghe.getId(),  offFiz1.getIdOferta());
+        catalog.atribuireProfesorLaCurs(profIonescu.getId(), offProg.getIdOferta());
+        catalog.atribuireProfesorLaCurs(profIonescu.getId(), offAlgo.getIdOferta());
+        catalog.atribuireProfesorLaCurs(profNazarov.getId(), offAMat.getIdOferta());
+        catalog.atribuireProfesorLaCurs(profNazarov.getId(), offEDif.getIdOferta());
+        catalog.atribuireProfesorLaCurs(profGheorghe.getId(), offFiz1.getIdOferta());
 
         // Studenți
-        Student sAna   = new Student(IdGenerator.generareId(), "Popescu Ana", LocalDate.of(2004, 5,10), "Informatică");
-        Student sBogdan= new Student(IdGenerator.generareId(), "Ionescu Bogdan", LocalDate.of(2003,11,21), "Matematică");
-        Student sCarmen= new Student(IdGenerator.generareId(), "Georgescu Carmen", LocalDate.of(2004, 2, 2), "Fizică");
+        Student sAna = new Student(IdGenerator.generareId(), "Popa Ana", LocalDate.of(2004, 5,10), "Informatică"); //id 9
+        Student sBogdan = new Student(IdGenerator.generareId(), "Marin Bogdan", LocalDate.of(2003,11,21), "Matematică"); //id 10
+        Student sCarmen = new Student(IdGenerator.generareId(), "Preda Carmen", LocalDate.of(2004, 2, 2), "Fizică"); //id 11
 
         List.of(sAna, sBogdan, sCarmen).forEach(s -> {
             catalog.adaugaStudent(s);
@@ -228,25 +228,25 @@ public class Main {
 
         // Înscrieri + Note
         // Ana la Programare și Algoritmi
-        Enrollment eAnaProg = catalog.inscriereStudentLaCurs(sAna.getId(), offProg.getIdOferta());
+        Enrollment eAnaProg = catalog.inscriereStudentLaCurs(sAna.getId(), offProg.getIdOferta()); //id 12
         enrollmentIds.add(eAnaProg.getIdInscriere());
-        catalog.inregistrareNota(eAnaProg.getIdInscriere(), 9.5);
-        catalog.inregistrareNota(eAnaProg.getIdInscriere(), 8.0);
+        catalog.inregistrareNota(eAnaProg.getIdInscriere(), 9.5); //id 13
+        catalog.inregistrareNota(eAnaProg.getIdInscriere(), 8.0); //id 14
 
-        Enrollment eAnaAlgo = catalog.inscriereStudentLaCurs(sAna.getId(), offAlgo.getIdOferta());
+        Enrollment eAnaAlgo = catalog.inscriereStudentLaCurs(sAna.getId(), offAlgo.getIdOferta()); //id 15
         enrollmentIds.add(eAnaAlgo.getIdInscriere());
-        catalog.inregistrareNota(eAnaAlgo.getIdInscriere(), 10);
+        catalog.inregistrareNota(eAnaAlgo.getIdInscriere(), 10); //id 16
 
         // Bogdan la Programare
-        Enrollment eBogdanProg = catalog.inscriereStudentLaCurs(sBogdan.getId(), offProg.getIdOferta());
+        Enrollment eBogdanProg = catalog.inscriereStudentLaCurs(sBogdan.getId(), offProg.getIdOferta()); //id 17
         enrollmentIds.add(eBogdanProg.getIdInscriere());
 
         // Carmen la Analiză și Fizică I
-        Enrollment eCarmenAMat = catalog.inscriereStudentLaCurs(sCarmen.getId(), offAMat.getIdOferta());
+        Enrollment eCarmenAMat = catalog.inscriereStudentLaCurs(sCarmen.getId(), offAMat.getIdOferta()); //id 18
         enrollmentIds.add(eCarmenAMat.getIdInscriere());
-        catalog.inregistrareNota(eCarmenAMat.getIdInscriere(), 7.5);
+        catalog.inregistrareNota(eCarmenAMat.getIdInscriere(), 7.5); //id 19
 
-        Enrollment eCarmenFiz = catalog.inscriereStudentLaCurs(sCarmen.getId(), offFiz1.getIdOferta());
+        Enrollment eCarmenFiz = catalog.inscriereStudentLaCurs(sCarmen.getId(), offFiz1.getIdOferta()); //id 20
         enrollmentIds.add(eCarmenFiz.getIdInscriere());
     }
 
