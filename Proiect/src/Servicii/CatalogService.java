@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 public final class CatalogService {
     private static CatalogService instance;
 
-    private final CourseRepo           courseRepo     = CourseRepo.getInstance();
-    private final CourseOfferingRepo   offeringRepo   = CourseOfferingRepo.getInstance();
-    private final Map<Integer, Student>   studenti   = new HashMap<>();
-    private final Map<Integer, Professor> profesori  = new HashMap<>();
+    private final CourseRepo courseRepo = CourseRepo.getInstance();
+    private final CourseOfferingRepo offeringRepo = CourseOfferingRepo.getInstance();
+    private final Map<Integer, Student> studenti = new HashMap<>();
+    private final Map<Integer, Professor> profesori = new HashMap<>();
     private final Map<Integer, Enrollment> inscrieri = new HashMap<>();
 
     private final AuditService audit = AuditService.getInstance();
@@ -109,7 +109,13 @@ public final class CatalogService {
     }
 
     /* ----------------- metode auxiliare pentru populare ------------------ */
-    public void adaugaStudent(Student s){ studenti.put(s.getId(), s); }
-    public void adaugaProfesor(Professor p){ profesori.put(p.getId(), p); }
-    public void adaugaOferta(CourseOffering o){ offeringRepo.add(o); }
+    public void adaugaStudent(Student s) {
+        studenti.put(s.getId(), s);
+    }
+    public void adaugaProfesor(Professor p) {
+        profesori.put(p.getId(), p);
+    }
+    public void adaugaOferta(CourseOffering o) {
+        offeringRepo.add(o);
+    }
 }

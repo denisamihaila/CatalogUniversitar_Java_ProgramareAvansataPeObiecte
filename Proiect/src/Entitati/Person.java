@@ -4,14 +4,19 @@ public abstract class Person {
     protected final int id;
     protected final String nume;
 
-    protected Person(int id, String nume) {
-        this.id  = id;
+    public Person(int id, String nume) {
+        this.id = id;
         this.nume = nume;
     }
 
-    public int getId()          { return id;   }
-    public String getNume()     { return nume; }
+    public int getId() {
+        return id;
+    }
+    public String getNume() {
+        return nume;
+    }
 
-    @Override
-    public String toString() { return nume + " (id=" + id + ")"; }
+    @Override public String toString() {
+        return nume + " (id=" + id + ")";
+    }
 }

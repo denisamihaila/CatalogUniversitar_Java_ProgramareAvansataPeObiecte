@@ -14,8 +14,16 @@ public final class CourseRepo {
         return instance;
     }
 
-    public void add(Course c)               { courses.put(c.getCodMaterie(), c); }
-    public Course get(String cod)           { return courses.get(cod); }
-    public Collection<Course> getAll()      { return courses.values(); }
-    public boolean exists(String cod)       { return courses.containsKey(cod); }
+    public void add(Course c) {
+        courses.put(c.getCodMaterie(), c);
+    }
+    public Course get(String cod) {
+        return courses.get(cod);
+    }
+    public Collection<Course> getAll() {
+        return courses.values();
+    }
+    public boolean exists(String cod) {
+        return courses.containsKey(cod);
+    }
 }

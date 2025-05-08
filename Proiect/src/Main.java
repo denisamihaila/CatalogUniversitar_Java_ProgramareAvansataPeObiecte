@@ -8,11 +8,10 @@ import java.util.*;
 
 public class Main {
 
-    /* ============ colecții locale cu ID-uri valide ============ */
-    private static final Set<Integer> studentIds   = new HashSet<>();
+    private static final Set<Integer> studentIds = new HashSet<>();
     private static final Set<Integer> professorIds = new HashSet<>();
-    private static final Set<Integer> offeringIds  = new HashSet<>();
-    private static final Set<Integer> enrollmentIds= new HashSet<>();
+    private static final Set<Integer> offeringIds = new HashSet<>();
+    private static final Set<Integer> enrollmentIds = new HashSet<>();
 
     private static final CatalogService catalog = CatalogService.getInstance();
     private static final Scanner in = new Scanner(System.in);
@@ -65,10 +64,10 @@ public class Main {
     // ---- 1
     private static void actionInscriereStudent() {
         int idStud = citesteIdValid("Id student: ", studentIds, "Nu există acest student! Introduceți alt ID: ");
-        int idOf   = citesteIdValid("Id ofertă curs: ", offeringIds, "Nu există oferta! Introduceți alt ID: ");
+        int idOf = citesteIdValid("Id ofertă curs: ", offeringIds, "Nu există oferta! Introduceți alt ID: ");
 
         Enrollment e = catalog.inscriereStudentLaCurs(idStud, idOf);
-        enrollmentIds.add(e.getIdInscriere());            // memorăm noul ID
+        enrollmentIds.add(e.getIdInscriere());
         System.out.println("Înscriere realizată: id=" + e.getIdInscriere());
     }
 
@@ -76,14 +75,14 @@ public class Main {
     private static void actionRetragereStudent() {
         int idIns = citesteIdValid("Id înscriere: ", enrollmentIds, "Nu există înscrierea! Introduceți alt ID: ");
         catalog.retragereStudentDinCurs(idIns);
-        enrollmentIds.remove(idIns);                       // scoatem din set
+        enrollmentIds.remove(idIns);
         System.out.println("Înscriere anulată.");
     }
 
     // ---- 3
     private static void actionListareCursuriSemestru() {
         int sem = citesteInt("Semestru (1/2): ");
-        int an  = citesteInt("An universitar (ex. 2025): ");
+        int an = citesteInt("An universitar (ex. 2025): ");
         List<CourseOffering> list = catalog.listareCursuri(sem, an);
         list.forEach(System.out::println);
     }
@@ -91,14 +90,14 @@ public class Main {
     // ---- 4
     private static void actionAtribuireProfesor() {
         int idProf = citesteIdValid("Id profesor: ", professorIds, "Nu există profesorul! Introduceți alt ID: ");
-        int idOf   = citesteIdValid("Id ofertă curs: ", offeringIds, "Nu există oferta! Introduceți alt ID: ");
+        int idOf = citesteIdValid("Id ofertă curs: ", offeringIds, "Nu există oferta! Introduceți alt ID: ");
         catalog.atribuireProfesorLaCurs(idProf, idOf);
         System.out.println("Profesor atribuit.");
     }
 
     // ---- 5
     private static void actionAdaugareMaterie() {
-        String cod  = citesteStr("Cod materie: ");
+        String cod = citesteStr("Cod materie: ");
         String nume = citesteStr("Denumire: ");
         int credite = citesteInt("Credite: ");
         String dept = citesteStr("Departament: ");
@@ -133,8 +132,7 @@ public class Main {
     // ---- 9
     private static void actionNoteSiMedieStudent() {
         int idStud = citesteIdValid("Id student: ", studentIds, "Nu există acest student! Introduceți alt ID: ");
-        catalog.noteStudent(idStud).forEach(g ->
-                System.out.println("Notă: " + g.getValoareNota()));
+        catalog.noteStudent(idStud).forEach(g -> System.out.println("Notă: " + g.getValoareNota()));
         System.out.printf("Media: %.2f%n", catalog.medieStudent(idStud));
     }
 
@@ -145,12 +143,11 @@ public class Main {
     }
 
     /* =========== HELPER PENTRU VALIDAREA ID-ului ============= */
-    private static int citesteIdValid(String msg, Set<Integer> set,
-                                      String msgNuExista) {
+    private static int citesteIdValid(String msg, Set<Integer> set, String msgNuExista) {
         int id = citesteInt(msg);
         while (!set.contains(id)) {
             System.out.print(msgNuExista);
-            id = citesteInt("");          // citește din nou
+            id = citesteInt("");
         }
         return id;
     }
@@ -172,7 +169,7 @@ public class Main {
         return in.nextLine();
     }
 
-    /* ============ DATĂ DEMO + populare seturi ================= */
+    /* ============ DATE DEMO ================= */
     private static void populateDemo() {
         Department info = new Department(1,"Informatica","FMI");
 
@@ -181,8 +178,7 @@ public class Main {
         catalog.adaugaMaterie(cProg);
         catalog.adaugaMaterie(cAlgo);
 
-        Professor prof = new Professor(IdGenerator.generareId(),
-                "Dr. Vasile Pop","Lect. univ. dr.",info);
+        Professor prof = new Professor(IdGenerator.generareId(),"Dr. Vasile Pop","Lect. univ. dr.",info);
         catalog.adaugaProfesor(prof);
         professorIds.add(prof.getId());
 
@@ -191,9 +187,7 @@ public class Main {
         catalog.adaugaOferta(offProg);
         offeringIds.add(offProg.getIdOferta());
 
-        Student sAna = new Student(IdGenerator.generareId(),
-                "Popescu Ana", LocalDate.of(2004,5,10),
-                "Informatică");
+        Student sAna = new Student(IdGenerator.generareId(), "Popescu Ana", LocalDate.of(2004,5,10), "Informatică");
         catalog.adaugaStudent(sAna);
         studentIds.add(sAna.getId());
 

@@ -15,7 +15,13 @@ public final class CourseOfferingRepo {
         return instance;
     }
 
-    public void add(CourseOffering o)          { offerings.put(o.getIdOferta(), o); }
-    public CourseOffering get(int id)          { return offerings.get(id); }
-    public Map<Integer, CourseOffering> all()  { return offerings; }
+    public void add(CourseOffering o) {
+        offerings.put(o.getIdOferta(), o);
+    }
+    public CourseOffering get(int id) {
+        return offerings.get(id);
+    }
+    public Map<Integer, CourseOffering> all() {
+        return offerings;
+    }
 }
