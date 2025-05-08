@@ -82,7 +82,7 @@ public class Main {
     // ---- 3
     private static void actionListareCursuriSemestru() {
         int sem = citesteInt("Semestru (1/2): ");
-        int an = citesteInt("An universitar (ex. 2025): ");
+        int an = citesteInt("An universitar (1/2/3): ");
         List<CourseOffering> list = catalog.listareCursuri(sem, an);
         list.forEach(System.out::println);
     }
@@ -198,11 +198,11 @@ public class Main {
         });
 
         // Oferte de curs (semestru/an)
-        CourseOffering offProg = new CourseOffering(IdGenerator.generareId(), cProg, 1, 2025); //id 4
-        CourseOffering offAlgo = new CourseOffering(IdGenerator.generareId(), cAlgo, 2, 2025); //id 5
-        CourseOffering offAMat = new CourseOffering(IdGenerator.generareId(), cAMat, 1, 2025); //id 6
-        CourseOffering offEDif = new CourseOffering(IdGenerator.generareId(), cEDif, 2, 2025); //id 7
-        CourseOffering offFiz1 = new CourseOffering(IdGenerator.generareId(), cFiz1, 1, 2025); //id 8
+        CourseOffering offProg = new CourseOffering(IdGenerator.generareId(), cProg, 1, 1); //id 4
+        CourseOffering offAlgo = new CourseOffering(IdGenerator.generareId(), cAlgo, 2, 2); //id 5
+        CourseOffering offAMat = new CourseOffering(IdGenerator.generareId(), cAMat, 1, 2); //id 6
+        CourseOffering offEDif = new CourseOffering(IdGenerator.generareId(), cEDif, 2, 1); //id 7
+        CourseOffering offFiz1 = new CourseOffering(IdGenerator.generareId(), cFiz1, 1, 3); //id 8
 
         List.of(offProg, offAlgo, offAMat, offEDif, offFiz1).forEach(o -> {
             catalog.adaugaOferta(o);
